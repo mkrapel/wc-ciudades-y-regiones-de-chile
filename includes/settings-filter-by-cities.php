@@ -1,7 +1,6 @@
 <?php
 /**
- * Legacy flat rate settings.
- *
+ * Legacy flat rate settings. *
  * @package WooCommerce\Shipping
  */
 
@@ -13,9 +12,9 @@ $cost_desc = __( 'Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</cod
 
 $settings =  array(
     'single_method' => array(
-        'title' 		=> __( 'Método de Envío Único', 'wc-ciudades-y-regiones-de-chile' ),
+        'title' 		=> __( 'Método de Envío Único' ),
         'type' 			=> 'select',
-        'description' 	=> __( 'Al hacer un método de envío único, elimina todos los demás e impone sus propias reglas', 'wc-ciudades-y-regiones-de-chile' ),
+        'description' 	=> __( 'Al hacer un método de envío único, elimina todos los demás e impone sus propias reglas' ),
         'class'         => 'wc-enhanced-select',
         'default' 		=> 'no',
         'desc_tip'		=> true,
@@ -29,7 +28,7 @@ $settings =  array(
         'title' 		=> __( 'Nombre del Tipo de Envío', 'woocommerce' ),
         'type' 			=> 'text',
         'description' 	=> __( 'Esto controla el título que ve el usuario durante el pago. en el CheckOut.', 'woocommerce' ),
-        'default'		=> __( 'Filtro de envío por Ciudades', 'woocommerce' ),
+        'default'		=> __( 'Filtro de envío por Distrito/Ciudad/Municipio', 'woocommerce' ),
         'desc_tip'		=> true
     ),
     'tax_status' => array(
@@ -43,17 +42,17 @@ $settings =  array(
         )
     ),
     'cost' => array(
-        'title' => __('Monto', 'wc-ciudades-y-regiones-de-chile'),
+        'title' => __('Monto'),
         'type' 			=> 'text',
         'description' 	=> $cost_desc,
         'default'		=> '0',
         'desc_tip'		=> true
     ),
     'cities' => array(
-        'title' => __('Ciudades','wc-ciudades-y-regiones-de-chile'),
+        'title' => __('Distritos/Ciudades/Municipios'),
         'type' => 'multiselect',
         'class'       => 'wc-enhanced-select',
-        'description' => __( 'Seleccione la/s ciudad/es que hace referencia a la Región que ha agregado anteriormente como Zona de Envío', 'wc-ciudades-y-regiones-de-chile' ),
+        'description' => __( 'Seleccione los Distritos/Ciudades/Municipios que hace referencia al Departamento/Región/Provincia que ha agregado anteriormente como Zona de Envío' ),
         'options' => $this->showCitiesRegions(),
         'desc_tip'    => true,
     )

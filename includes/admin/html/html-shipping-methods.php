@@ -7,10 +7,10 @@ $methods = array();
 
 ?>
     <tr valign="top">
-        <th colspan="2" scope="row" class="titledesc"><?php echo __( 'Configured Shipping filter By Cities  Methods in all shipping zones', 'wc-ciudades-y-regiones-de-chile' ) ?></th>
+        <th colspan="2" scope="row" class="titledesc"><?php echo __( 'Filtro de envío configurado por métodos de Distritos/Ciudades/Municipios en todas las zonas de envío' ) ?></th>
     </tr>
     <tr valign="top">
-        <td colspan="2" class="forminp" id="<?php echo $this->id; ?>_rules_shipping_methods"><?php echo sprintf(__( 'This table shows <a href="%s">all shipping zones</a> and for each zone the shipping methods provided by this plugin.' , 'wc-ciudades-y-regiones-de-chile'), admin_url( 'admin.php?page=wc-settings&tab=shipping' ) ); ?>
+        <td colspan="2" class="forminp" id="<?php echo $this->id; ?>_rules_shipping_methods"><?php echo sprintf(__( 'This table shows <a href="%s">all shipping zones</a> and for each zone the shipping methods provided by this plugin.'), admin_url( 'admin.php?page=wc-settings&tab=shipping' ) ); ?>
 
             <table class="rules_shipping_methods wc-shipping-zones widefat striped" cellspacing="0">
                 <thead>

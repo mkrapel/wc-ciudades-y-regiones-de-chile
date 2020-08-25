@@ -11,14 +11,13 @@
  * Plugin Name: Regiones y Ciudades de Chile para WooCommerce
  * Plugin URI: https://marketingrapel.cl/
  * Description: Plugin con las Regiones y Ciudades de Chile actualizado al 2020, permitiendo usar las ciudades para establecer las Zonas de Despacho en la sección de Envíos de WooCommerce. Retira campos de Código Postal y Línea 2 de la Dirección en el CheckOut, junto con nueva distribución visible.
- * Version: 3.0
+ * Version: 3.1
  * Author: Marketing Rapel
  * Author URI: https://marketingrapel.cl
- * License: GPLv2
+ * License: GPLv3
  * Requires at least: 5.0
  * Tested up to: 5.4
  * Requires PHP: 5.6
- * Language: Spanish
  * Text Domain: wc-ciudades-y-regiones-de-chile
 */
 
@@ -31,8 +30,7 @@ add_filter('woocommerce_checkout_fields', 'mkrapel_campos_quitados');
 add_filter('woocommerce_checkout_fields', 'mkrapel_campos_class');
 add_filter('woocommerce_checkout_fields', 'mkrapel_campos_orden');
 
-add_action('plugins_loaded','wc_ciudades_y_regiones_de_chile_init',1);
-
+add_action('plugins_loaded','mkrapel_regiones_ciudades_cl_init',1);
 
 function mkrapel_smp_notices($classes, $notice){
     ?>
@@ -41,26 +39,24 @@ function mkrapel_smp_notices($classes, $notice){
     </div>
     <?php
 }
-function wc_ciudades_y_regiones_de_chile_init(){
+function mkrapel_regiones_ciudades_cl_init(){
     load_plugin_textdomain('wc-ciudades-y-regiones-de-chile',
         FALSE, dirname(plugin_basename(__FILE__)) . '/languages');
 
-    /**
-     * Check if WooCommerce is active
-     */
+    /* Check if WooCommerce is active */
     if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
 
         require_once ('includes/states-places.php');
         require_once ('includes/filter-by-cities.php');
 		
         global $pagenow;
-        $GLOBALS['wc_states_places'] = new WC_Ciudades_Regiones_Chile(__FILE__);
+        $GLOBALS['wc_states_places'] = new MkRapel_Region_Ciudad_CL(__FILE__);
 		
         add_filter( 'woocommerce_shipping_methods', 'add_filters_by_cities_method' );
         add_action( 'woocommerce_shipping_init', 'filters_by_cities_method' );
 		
         function add_filters_by_cities_method( $methods ) {
-            $methods['filters_by_cities_shipping_method'] = 'Filters_By_Cities_Method';
+            $methods['filters_by_cities_shipping_method'] = 'Filters_By_Cities_Method_CL';
             return $methods;
         }
         if ( is_admin() && 'plugins.php' == $pagenow && !defined( 'DOING_AJAX' ) ) {
@@ -74,7 +70,7 @@ function mkrapel_nombre_campos( $fields ) {
     $fields['billing']['billing_first_name']['placeholder'] = 'Su Nombre';
     $fields['billing']['billing_last_name']['placeholder'] = 'Sus Apellidos';
     $fields['billing']['billing_address_1']['placeholder'] = 'Nombre de la Calle, Número, Depto, Local, Oficina';
-    $fields['billing']['billing_company']['placeholder'] = 'Digite su RUN';
+    $fields['billing']['billing_company']['placeholder'] = 'Digite su DNI';
     $fields['billing']['billing_country']['placeholder'] = 'Seleccione País';
 	$fields['billing']['billing_state']['placeholder'] = 'Seleccione Región';
     $fields['billing']['billing_city']['placeholder'] = 'Seleccione Ciudad';
@@ -82,7 +78,7 @@ function mkrapel_nombre_campos( $fields ) {
     $fields['billing']['billing_phone']['placeholder'] = 'Su Celular o Teléfono';
     
     $fields['billing']['billing_address_1']['label'] = 'Dirección';
-    $fields['billing']['billing_company']['label'] = 'RUN';
+    $fields['billing']['billing_company']['label'] = 'DNI';
     $fields['billing']['billing_country']['label'] = 'País';
     $fields['billing']['billing_state']['label'] = 'Región';
     $fields['billing']['billing_city']['label'] = 'Ciudad';
@@ -91,7 +87,7 @@ function mkrapel_nombre_campos( $fields ) {
     $fields['shipping']['shipping_first_name']['placeholder'] = 'Su Nombre';
     $fields['shipping']['shipping_last_name']['placeholder'] = 'Sus Apellidos';
     $fields['shipping']['shipping_address_1']['placeholder'] = 'Nombre de la Calle, Número, Depto, Local, Oficina';
-    $fields['shipping']['shipping_company']['placeholder'] = 'Digite su RUN';
+    $fields['shipping']['shipping_company']['placeholder'] = 'Digite su DNI';
     $fields['shipping']['shipping_country']['placeholder'] = 'Seleccione País';
     $fields['shipping']['shipping_state']['placeholder'] = 'Seleccione Región';
     $fields['shipping']['shipping_city']['placeholder'] = 'Seleccione Ciudad';
@@ -99,7 +95,7 @@ function mkrapel_nombre_campos( $fields ) {
     $fields['shipping']['shipping_phone']['placeholder'] = 'Su Celular o Teléfono';
     
     $fields['shipping']['shipping_address_1']['label'] = 'Dirección';
-    $fields['shipping']['shipping_company']['label'] = 'RUN';
+    $fields['shipping']['shipping_company']['label'] = 'DNI';
     $fields['shipping']['shipping_country']['label'] = 'País';
     $fields['shipping']['shipping_state']['label'] = 'Región';
     $fields['shipping']['shipping_city']['label'] = 'Ciudad';

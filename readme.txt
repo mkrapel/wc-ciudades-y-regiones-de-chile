@@ -7,8 +7,7 @@ Tested up to: 5.4
 Stable tag: 5.4
 MySQL: 5.6 or greater
 Language: Spanish
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
 
 == Description ==
 
@@ -61,6 +60,10 @@ Para el desarrollo de este plugin fue utilizada la información disponible en lo
 10. Ciudades disponibles según la Región seleccionada e ingresada como Zona de Envío principal.
 
 == Changelog ==
+
+= v3.1 - 24.08.2020 =
+* Setting: Ajuste General en el código del plugin
+* Setting: Ajuste en base a recomendaciones de WordPress
 
 = v3.0 - 20.08.2020 =
 * Setting: Ajuste General en el código del plugin
