@@ -27,7 +27,9 @@ $places['CL'] = array(
 	),
 	'CL_AN' => array(
         'Antofagasta',
+        'Baquedano',
         'Calama',
+        'La Negra',
         'María Elena',
         'Mejillones',
         'Ollagüe',
